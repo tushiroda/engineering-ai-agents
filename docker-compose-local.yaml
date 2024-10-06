@@ -1,29 +1,28 @@
 ---
-
 services:
   eng-ai-agents:
-      build:
-        context: "."
-        dockerfile: ./docker/Dockerfile.dev.gpu
-      image: eng-ai-agents
-      shm_size: '8gb'  # Shared memory size
-      user: vscode
-      command: /bin/sh -c "while sleep 1000; do :; done"
-      # depends_on:
-      #   - minio
-        #- postgresml
-      environment:
-      - NVIDIA_VISIBLE_DEVICES=all  # or specify GPUs as 0,1 for specific devices
-      deploy:
-        resources:
-          reservations:
-            devices:
-            - driver: nvidia
-              capabilities: ["gpu"]
-              device_ids: ["all"]  # Specify GPU IDs if needed, or 'all' to use all available GPUs
-      networks:
-        - eng-ai-agents-net
-      
+    build:
+      context: "."
+      dockerfile: ./docker/Dockerfile.dev.gpu
+    image: eng-ai-agents
+    shm_size: "4gb" # Shared memory size
+    user: vscode
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    # depends_on:
+    #   - minio
+    #- postgresml
+    # environment:
+    #   - NVIDIA_VISIBLE_DEVICES=all # or specify GPUs as 0,1 for specific devices
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           capabilities: ["gpu"]
+    #           device_ids: ["all"] # Specify GPU IDs if needed, or 'all' to use all available GPUs
+    networks:
+      - eng-ai-agents-net
+
   # minio:
   #   image: minio/minio:latest
   #   container_name: minio
@@ -70,4 +69,3 @@ volumes:
   minio_data:
   #postgresml_data:
   rye-cache:
-
