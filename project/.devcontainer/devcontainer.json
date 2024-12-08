@@ -1,0 +1,27 @@
+{
+    "name": "CS370 Project",
+    "dockerComposeFile": [
+        "../docker-compose.yaml", // primary compose file
+        // "./docker-compose.yaml" // extension for compose file to allow launch with vscode and different settings
+    ],
+    "service": "app",
+    "workspaceFolder": "/workspaces/app",
+    "remoteUser": "vscode",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-azuretools.vscode-docker",
+                "ms-python.python",
+                "kevinrose.vsc-python-indent",
+            ],
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "terminal.integrated.profiles.linux": {
+                    "zsh": {
+                        "path": "/bin/bash"
+                    }
+                }
+            }
+        }
+    }
+}
