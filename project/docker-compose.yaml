@@ -5,7 +5,8 @@ services:
     image: project_app
     shm_size: "4gb"
     user: vscode
-
+    extra_hosts:
+      local: 172.17.0.1
     command: /bin/sh -c "while sleep 1000; do :; done"
     networks:
       - local
@@ -18,9 +19,6 @@ services:
     logging:
       options:
         max-size: 1g
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: "tu34"
-      MONGO_INITDB_ROOT_PASSWORD: "123"
     ports:
       - 27017:27017
     volumes:
